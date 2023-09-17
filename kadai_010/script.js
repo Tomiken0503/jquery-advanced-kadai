@@ -65,6 +65,20 @@ $(() => {
             $('#message').css('background-color', '#fafafa');
         }
 
+        //都道府県チェック
+        // セレクタを変数に格納
+        const prefecture = $('#prefecture');
+        // 都道府県の値を取得し、変数に格納
+        const prefectureVal = prefecture.val();
+        if(prefectureVal === ''){
+            // 都道府県が選択されていなかった場合
+            prefecture.css('background-color', '#f79999');
+            error = true;
+            message += '都道府県を選択してください\n';
+        } else {
+            prefecture.css('background-color', '#fafafa');
+        }
+
         // メールアドレスのチェック
         if ($('#email').val() == '' || $('#email').val().indexOf('@') == -1 || $('#email').val().indexOf('.') == -1) {
             // エラーあり
@@ -141,22 +155,8 @@ $(() => {
     });
 
     // フォーカスが外れたとき（blur）にフォームの入力チェックをする
-    $('#name,#furigana,#email,#tel,#message').on('blur',(e) => {
+    $('#name,#furigana,#email,#tel,#message,#prefecture').on('blur',(e) => {
         inputCheck();
-    });
-
-    // 都道府県コンボボックスがフォーカスを失った時
-    $('#prefecture').on('blur',() => {
-        // セレクタを変数に格納
-        const prefecture = $('#prefecture');
-        // 都道府県の値を取得し、変数に格納
-        const prefectureVal = prefecture.val();
-        if(prefectureVal === ''){
-            prefecture.css('background-color', '#f79999');
-            alert('都道府県を選択してください');
-        } else {
-            prefecture.css('background-color', '#fafafa');
-        }
     });
 
     $('#agree').click(function (e) {
